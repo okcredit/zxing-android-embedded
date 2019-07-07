@@ -104,6 +104,15 @@ public class SourceData {
         // not the preview for decoding.
         if (isRotated()) {
             //noinspection SuspiciousNameCombination
+
+            if (cropRect.left + cropRect.width() > dataHeight) {
+                dataHeight = cropRect.left + cropRect.width() ;
+            }
+
+            if (cropRect.top + cropRect.height() > dataWidth) {
+                dataWidth = cropRect.top + cropRect.height();
+            }
+
             return new PlanarYUVLuminanceSource(rotated, dataHeight, dataWidth, cropRect.left, cropRect.top, cropRect.width(), cropRect.height(), false);
         } else {
             return new PlanarYUVLuminanceSource(rotated, dataWidth, dataHeight, cropRect.left, cropRect.top, cropRect.width(), cropRect.height(), false);
